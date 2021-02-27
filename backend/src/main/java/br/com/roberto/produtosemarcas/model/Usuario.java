@@ -1,23 +1,26 @@
 package br.com.roberto.produtosemarcas.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "usuarios")
+@Table(name = "tb_usuarios")
 public class Usuario {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_id_usuario")
+    @SequenceGenerator(name = "seq_id_usuario", sequenceName = "seq_usuario" , schema = "App" , initialValue = 10)
     private long id;
 
     private String nome;
     private String username;
     private String password;
 
-    //@JsonIgnoreProperties("usuarios")
+    @JsonIgnoreProperties("usuarios")
     @ManyToMany(mappedBy = "usuarios")
     private List<Role> roles;
 

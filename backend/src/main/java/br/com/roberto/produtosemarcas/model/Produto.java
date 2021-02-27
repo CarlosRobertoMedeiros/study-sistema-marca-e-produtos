@@ -1,6 +1,9 @@
 package br.com.roberto.produtosemarcas.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import javax.persistence.*;
 
 @Entity
@@ -8,7 +11,8 @@ import javax.persistence.*;
 public class Produto {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_id_produto")
+    @SequenceGenerator(name = "seq_id_produto", sequenceName = "seq_produto" , schema = "App" , initialValue = 10)
     private long id;
 
     @Column(nullable = false, length = 60)
@@ -19,8 +23,8 @@ public class Produto {
 
     @ManyToOne
     @JoinColumn(name = "id_marca_fk")
-    //@JsonInclude(JsonInclude.Include.NON_NULL)
-    //@JsonIgnoreProperties({"produtos", "nome", "descricao"})
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonIgnoreProperties({"produtos", "nome", "descricao"})
     private Marca marca;
 
     public Produto() {

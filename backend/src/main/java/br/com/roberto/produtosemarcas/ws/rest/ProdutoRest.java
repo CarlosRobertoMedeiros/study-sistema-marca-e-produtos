@@ -3,6 +3,7 @@ package br.com.roberto.produtosemarcas.ws.rest;
 import br.com.roberto.produtosemarcas.model.Produto;
 import br.com.roberto.produtosemarcas.service.ProdutoService;
 
+import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
@@ -15,7 +16,8 @@ import java.util.List;
 @Produces(MediaType.APPLICATION_JSON + ";charset=utf-8")
 public class ProdutoRest {
 
-    private final ProdutoService produtoService = new ProdutoService();
+    @Inject
+    private ProdutoService produtoService;
 
     @POST
     public Response salvarProduto(@PathParam("marcaId") long marcaId, Produto produto, @Context UriInfo uriInfo) {

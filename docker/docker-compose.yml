@@ -16,7 +16,7 @@ services:
       - ORACLE_ALLOW_REMOTE=true
 
     ports:
-      - 8080:8080
+      - 8082:8082
       - 1521:1521
       - 5500:5500
     
@@ -25,7 +25,7 @@ services:
 
     volumes:
        - ${PWD}\oracle\data:/u01/app/oracle/oradata/oracle11g-data/
-       - ${PWD}\oracle\init/sh_sql_dmp_files:/docker-entrypoint-initdb.d/
+       - ${PWD}\oracle\init\sh_sql_dmp_files:/docker-entrypoint-initdb.d/
        #- ${PWD}/oracle/data:/u01/app/oracle/oradata/oracle11g-data/
        #- ${PWD}/oracle/init/sh_sql_dmp_files:/docker-entrypoint-initdb.d/
        
