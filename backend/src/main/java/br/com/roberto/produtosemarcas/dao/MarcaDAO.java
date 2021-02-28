@@ -8,6 +8,7 @@ import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
 public class MarcaDAO {
+
     public void salvarMarca(Marca marca, EntityManager em) {
         em.persist(marca);
     }
@@ -29,9 +30,13 @@ public class MarcaDAO {
     public List<Marca> recuperarMarcasPorNome(String nome) {
         EntityManager em = JPAUtil.getEntityManager();
 
-        return em.createQuery("SELECT m FROM Marca m WHERE m.nome like :nome", Marca.class)
-                .setParameter("nome", "%" + nome + "%")
-                .getResultList();
+        String jpql = " select m from Marca m where m.nome like concat(:nome,'%')";
+
+
+            return  em.createQuery(jpql,Marca.class)
+                    .setParameter("nome",nome)
+                    .getResultList();
+
     }
 
     public void atualizarMarca(Marca marca, EntityManager em) {

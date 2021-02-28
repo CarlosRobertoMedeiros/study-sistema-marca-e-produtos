@@ -5,11 +5,11 @@ import java.util.List;
 
 @Entity
 @Table(name = "tb_roles")
+@SequenceGenerator(name = "Role_Id", sequenceName = "seq_role" , schema = "App" , initialValue = 1, allocationSize = 1)
 public class Role {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_id_role")
-    @SequenceGenerator(name = "seq_id_role", sequenceName = "seq_role" , schema = "App" , initialValue = 10)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE , generator = "Role_Id")
     private long id;
 
     private String nome;

@@ -8,10 +8,11 @@ import java.util.List;
 
 @Entity
 @Table(name = "tb_marcas")
+@SequenceGenerator(name = "Marca_Id", sequenceName = "seq_marca" , schema = "App" , initialValue = 1, allocationSize = 1)
 public class Marca {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_id_marca")
-    @SequenceGenerator(name = "seq_id_marca", sequenceName = "seq_marca" , schema = "App" , initialValue = 10)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE , generator = "Marca_Id")
     private long id;
 
     @Column(nullable = false, length = 60)

@@ -19,6 +19,7 @@ public class ProdutoRest {
     @Inject
     private ProdutoService produtoService;
 
+    @Path("/{marcaId}")
     @POST
     public Response salvarProduto(@PathParam("marcaId") long marcaId, Produto produto, @Context UriInfo uriInfo) {
         produtoService.salvarProduto(produto, marcaId);
@@ -29,26 +30,28 @@ public class ProdutoRest {
                 .build();
     }
 
+    @Path("/{marcaId}")
     @GET
-    public List<Produto> recuperarProdutos(@PathParam("marcaId") long marcaId, @QueryParam("nome") @DefaultValue("") String nome) {
+    public List<Produto> recuperarProdutos(@PathParam("marcaId") long marcaId,
+                                           @QueryParam("nome") @DefaultValue("") String nome) {
         return (nome.isEmpty()) ? produtoService.recuperarProdutos(marcaId) : produtoService.recuperarProdutosPorNome(marcaId, nome);
     }
 
-    @GET
     @Path("{produtoId}")
+    @GET
     public Produto recuperarProdutoPorId(@PathParam("marcaId") long marcaId, @PathParam("produtoId") long produtoId) {
         return produtoService.recuperarProdutoPorId(marcaId, produtoId);
     }
 
-    @PUT
     @Path("{produtoId}")
+    @PUT
     public Produto atualizarProduto(@PathParam("marcaId") long marcaId, @PathParam("produtoId") long produtoId, Produto produto) {
         produtoService.atualizarProduto(marcaId, produtoId, produto);
         return produto;
     }
 
-    @DELETE
     @Path("{produtoId}")
+    @DELETE
     public void excluirProduto(@PathParam("produtoId") long produtoId) {
         produtoService.excluirProduto(produtoId);
     }
