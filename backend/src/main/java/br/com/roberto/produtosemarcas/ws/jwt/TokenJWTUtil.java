@@ -1,9 +1,10 @@
 package br.com.roberto.produtosemarcas.ws.jwt;
 
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
-import javax.inject.Inject;
 import java.security.Key;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -36,4 +37,22 @@ public class TokenJWTUtil {
     }
 
 
+    public static boolean tokenValido(String token, Key key) {
+     try {
+         Jwts.parser().setSigningKey(key).parseClaimsJws(token);
+         return true;
+     }catch (Exception e ){
+         return false;
+     }
+    }
+
+    public static String recuperarNome(String token, Key key) {
+        Jws<Claims> claimsJws = Jwts.parser().setSigningKey(key).parseClaimsJws(token);
+        return claimsJws.getBody().getSubject();
+    }
+
+    public static List<String> recuperarRoles(String token, Key key) {
+        Jws<Claims> claimsJws = Jwts.parser().setSigningKey(key).parseClaimsJws(token);
+        return claimsJws.getBody().get("roles", List.class);
+    }
 }

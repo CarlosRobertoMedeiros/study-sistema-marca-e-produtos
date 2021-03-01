@@ -40,7 +40,6 @@ public class AuthJWTRest {
         }
 
         return usuario;
-
     }
 
 }
