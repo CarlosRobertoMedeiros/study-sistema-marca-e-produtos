@@ -3,6 +3,8 @@ package br.com.roberto.produtosemarcas.ws.rest;
 import br.com.roberto.produtosemarcas.model.Marca;
 import br.com.roberto.produtosemarcas.service.MarcaService;
 
+import javax.annotation.security.PermitAll;
+import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
@@ -14,11 +16,13 @@ import java.util.List;
 @Path("/marcas")
 @Consumes(MediaType.APPLICATION_JSON + ";charset=utf-8")
 @Produces(MediaType.APPLICATION_JSON + ";charset=utf-8")
+@PermitAll
 public class MarcaRest {
 
     @Inject
     private MarcaService marcaService;
 
+    /*
     @POST
     public Response salvarMarca(Marca marca, @Context UriInfo uriInfo) {
         marcaService.salvarMarca(marca);
@@ -28,6 +32,7 @@ public class MarcaRest {
                 .entity(marca)
                 .build();
     }
+    */
 
     @GET
     public List<Marca> recuperarMarcas(@QueryParam("nome") @DefaultValue("") String nome) {
@@ -42,6 +47,7 @@ public class MarcaRest {
 
     @PUT
     @Path("{marcaId}")
+    @RolesAllowed({"Admin","Supervisor"})
     public Marca atualizarMarca(@PathParam("marcaId") long marcaId, Marca marca) {
         marcaService.atualizarMarca(marca, marcaId);
         return marca;
@@ -49,13 +55,26 @@ public class MarcaRest {
 
     @DELETE
     @Path("{marcaId}")
+    @RolesAllowed({"Admin"})
     public void excluirMarca(@PathParam("marcaId") long marcaId) {
         marcaService.excluirMarca(marcaId);
     }
 
+//    @Path("{marcaId}/produtos")
+//    public ProdutoRest obterProdutoResource() {
+//        return new ProdutoRest();
+//    }
+
+    @POST
     @Path("{marcaId}/produtos")
-    public ProdutoRest obterProdutoResource() {
-        return new ProdutoRest();
+    public Response salvarMarca(Marca marca, @Context UriInfo uriInfo) {
+        marcaService.salvarMarca(marca);
+
+        return Response
+                .created(uriInfo.getAbsolutePathBuilder().path(Long.toString(marca.getId())).build())
+                .entity(marca)
+                .build();
+
     }
 
 }

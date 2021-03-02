@@ -3,6 +3,8 @@ package br.com.roberto.produtosemarcas.ws.rest;
 import br.com.roberto.produtosemarcas.model.Produto;
 import br.com.roberto.produtosemarcas.service.ProdutoService;
 
+import javax.annotation.security.PermitAll;
+import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
@@ -14,6 +16,7 @@ import java.util.List;
 @Path("/produto")
 @Consumes(MediaType.APPLICATION_JSON + ";charset=utf-8")
 @Produces(MediaType.APPLICATION_JSON + ";charset=utf-8")
+@PermitAll
 public class ProdutoRest {
 
     @Inject
@@ -45,6 +48,7 @@ public class ProdutoRest {
 
     @Path("{produtoId}")
     @PUT
+    @RolesAllowed({"Admin"})
     public Produto atualizarProduto(@PathParam("marcaId") long marcaId, @PathParam("produtoId") long produtoId, Produto produto) {
         produtoService.atualizarProduto(marcaId, produtoId, produto);
         return produto;
@@ -52,6 +56,7 @@ public class ProdutoRest {
 
     @Path("{produtoId}")
     @DELETE
+    @RolesAllowed({"Admin","Supervisor"})
     public void excluirProduto(@PathParam("produtoId") long produtoId) {
         produtoService.excluirProduto(produtoId);
     }
