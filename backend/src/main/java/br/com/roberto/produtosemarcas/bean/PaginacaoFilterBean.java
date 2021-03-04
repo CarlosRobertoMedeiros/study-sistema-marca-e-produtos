@@ -1,8 +1,8 @@
-package br.com.roberto.produtosemarcas.ws.rest.bean;
+package br.com.roberto.produtosemarcas.bean;
 
 import javax.ws.rs.QueryParam;
 
-public class MarcaFilterBean {
+public class PaginacaoFilterBean {
     private @QueryParam("inicio")
     int inicio;
     private @QueryParam("tamanho")

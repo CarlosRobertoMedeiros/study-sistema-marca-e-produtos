@@ -1,5 +1,6 @@
 package br.com.roberto.produtosemarcas.dao;
 
+import br.com.roberto.produtosemarcas.bean.PaginacaoFilterBean;
 import br.com.roberto.produtosemarcas.exception.EntidadeNaoExisteException;
 import br.com.roberto.produtosemarcas.model.Marca;
 
@@ -13,17 +14,26 @@ public class MarcaDAO {
         em.persist(marca);
     }
 
-    public List<Marca> recuperarMarcas() {
+    public List<Marca> recuperarMarcas( ) {
         EntityManager em = JPAUtil.getEntityManager();
 
         return em.createQuery("select m from Marca m", Marca.class).getResultList();
     }
 
+    public List<Marca> recuperarMarcas(PaginacaoFilterBean paginacaoFilterBean) {
+        EntityManager em = JPAUtil.getEntityManager();
+
+        return em.createQuery("select m from Marca m", Marca.class)
+                .setFirstResult(paginacaoFilterBean.getInicio())
+                .setMaxResults(paginacaoFilterBean.getTamanho())
+                .getResultList();
+    }
+
     public Marca recuperarMarcaPorId(long marcaId, EntityManager em) {
         Marca marca = em.find(Marca.class, marcaId);
-        if (marca == null) {
+        /*if (marca == null) {
             throw new EntidadeNaoExisteException("Marca de id " + marcaId + " não existe no banco de dados");
-        }
+        }*/
         return marca;
     }
 

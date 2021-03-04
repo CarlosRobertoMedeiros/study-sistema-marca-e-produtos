@@ -2,6 +2,7 @@ package br.com.roberto.produtosemarcas.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import org.hibernate.annotations.Fetch;
 
 import javax.persistence.*;
 import java.util.List;
@@ -23,7 +24,8 @@ public class Marca {
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonIgnoreProperties("marca")
-    @OneToMany(mappedBy = "marca", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "marca", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+
     private List<Produto> produtos;
 
     public long getId() {

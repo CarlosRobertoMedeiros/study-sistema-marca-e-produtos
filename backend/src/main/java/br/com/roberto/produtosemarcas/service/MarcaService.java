@@ -1,5 +1,6 @@
 package br.com.roberto.produtosemarcas.service;
 
+import br.com.roberto.produtosemarcas.bean.PaginacaoFilterBean;
 import br.com.roberto.produtosemarcas.dao.JPAUtil;
 import br.com.roberto.produtosemarcas.dao.MarcaDAO;
 import br.com.roberto.produtosemarcas.model.Marca;
@@ -33,6 +34,11 @@ public class MarcaService {
     public List<Marca> recuperarMarcas() {
         return marcaDAO.recuperarMarcas();
     }
+
+    public List<Marca> recuperarMarcas(PaginacaoFilterBean paginacaoFilterBean) {
+        return marcaDAO.recuperarMarcas(paginacaoFilterBean);
+    }
+
 
     public Marca recuperarMarcaPorId(long marcaId) {
         EntityManager em = JPAUtil.getEntityManager();
