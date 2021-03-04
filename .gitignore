@@ -32,7 +32,7 @@ build/
 /.metadata/
 
 ### Front End ###
-/bower_components
+frontend/app/bower_components
 
 ## Docker ###
 /docker/oracle
