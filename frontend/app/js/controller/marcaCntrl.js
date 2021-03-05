@@ -8,10 +8,15 @@
         mc.marcas = [];
         mc.titulo = "Titulo 102030";
         
-        mc.inicio = 6,
-        mc.tamanho = 5;
+        mc.totalItems = 165,
+        mc.currentPage = 1;
         mc.totalRegistros = 50;
       
+        mc.pageChanged = function(){
+            console.log('Pagina Corrente' +mc.currentPage);
+        }
+
+        
         mc.init = function(){
             this.listarMarcas();
         }
