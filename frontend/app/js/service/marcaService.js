@@ -10,7 +10,9 @@
         const baseVersao = 'v1/';
 
         mc.listarMarcas = function(inicio,tamanho){
-            const url = baseUrl+baseVersao+'marcas?inicio='+(inicio-1)+'&tamanho='+(tamanho);
+            //const url = baseUrl+baseVersao+'marcas?inicio='+(inicio-1)+'&tamanho='+(tamanho);
+            debugger;
+            const url = baseUrl+baseVersao+'marcas?inicio='+1+'&tamanho='+10;
             console.log(url);
 
             return $http.get(url);

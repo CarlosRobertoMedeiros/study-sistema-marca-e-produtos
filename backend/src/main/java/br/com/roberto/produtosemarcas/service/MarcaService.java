@@ -1,9 +1,12 @@
 package br.com.roberto.produtosemarcas.service;
 
+import br.com.roberto.produtosemarcas.bean.MarcaPaginadaBean;
 import br.com.roberto.produtosemarcas.bean.PaginacaoFilterBean;
 import br.com.roberto.produtosemarcas.dao.JPAUtil;
 import br.com.roberto.produtosemarcas.dao.MarcaDAO;
+import br.com.roberto.produtosemarcas.dao.PaginadorDAO;
 import br.com.roberto.produtosemarcas.model.Marca;
+import br.com.roberto.produtosemarcas.model.Paginador;
 import br.com.roberto.produtosemarcas.utils.IdUtils;
 
 import javax.persistence.EntityManager;
@@ -12,6 +15,7 @@ import java.util.List;
 public class MarcaService {
 
     private final MarcaDAO marcaDAO = new MarcaDAO();
+    private final PaginadorDAO paginadorDAO = new PaginadorDAO();
 
     public void salvarMarca(Marca marca) {
         EntityManager em = JPAUtil.getEntityManager();
@@ -31,12 +35,16 @@ public class MarcaService {
         }
     }
 
-    public List<Marca> recuperarMarcas() {
-        return marcaDAO.recuperarMarcas();
+    public MarcaPaginadaBean recuperarMarcas() {
+        Paginador paginador = paginadorDAO.recuperaInformacoesMarcas();
+        List<Marca> marcas = marcaDAO.recuperarMarcas();
+        return new MarcaPaginadaBean(paginador,marcas);
     }
 
-    public List<Marca> recuperarMarcas(PaginacaoFilterBean paginacaoFilterBean) {
-        return marcaDAO.recuperarMarcas(paginacaoFilterBean);
+    public MarcaPaginadaBean recuperarMarcas(PaginacaoFilterBean paginacaoFilterBean) {
+        Paginador paginador = paginadorDAO.recuperaInformacoesMarcas();
+        List<Marca> marcas = marcaDAO.recuperarMarcas();
+        return new MarcaPaginadaBean(paginador,marcas);
     }
 
 
@@ -45,8 +53,8 @@ public class MarcaService {
         return marcaDAO.recuperarMarcaPorId(IdUtils.idValido(marcaId), em);
     }
 
-    public List<Marca> recuperarMarcasPorNome(String nome) {
-        return marcaDAO.recuperarMarcasPorNome(nome);
+    public MarcaPaginadaBean recuperarMarcasPorNome(String nome) {
+        return new MarcaPaginadaBean(null,marcaDAO.recuperarMarcasPorNome(nome));
     }
 
     public void atualizarMarca(Marca marca, long marcaId) {

@@ -1,5 +1,6 @@
 package br.com.roberto.produtosemarcas.ws.rest;
 
+import br.com.roberto.produtosemarcas.bean.MarcaPaginadaBean;
 import br.com.roberto.produtosemarcas.bean.PaginacaoFilterBean;
 import br.com.roberto.produtosemarcas.exception.PaginacaoMarcaInvalidaException;
 import br.com.roberto.produtosemarcas.model.Marca;
@@ -35,11 +36,11 @@ public class MarcaRest {
         }
 
         try{
-            List<Marca> marcas =  (nome.isEmpty()) ?
+            MarcaPaginadaBean marcaPaginadaBean =  (nome.isEmpty()) ?
                     marcaService.recuperarMarcas(paginacaoFilterBean) :
                     marcaService.recuperarMarcasPorNome(nome);
 
-            return  (marcas.isEmpty()) ? Response.noContent().build() : Response.ok(marcas).build();
+            return  (marcaPaginadaBean.getMarcas().isEmpty()) ? Response.noContent().build() : Response.ok(marcaPaginadaBean).build();
         }catch (Exception e) {
             return Response.status(500).entity(e.getMessage()).build();
         }
