@@ -2,19 +2,24 @@ package br.com.roberto.produtosemarcas.model;
 
 public class Paginador {
 
-    public static final int QT_REGISTROS_POR_PAGINA = 5;
     private long qtPaginas;
     private long totalRegistros;
     private long paginaAtual;
+    private long qtRegistroPorPagina = 5;
 
-    public Paginador(long qtPaginas, long totalRegistros, long paginaAtual) {
+    public Paginador(long qtPaginas, long totalRegistros, long paginaAtual, long qtRegistroPorPagina) {
         this.qtPaginas = qtPaginas;
         this.totalRegistros = totalRegistros;
         this.paginaAtual = paginaAtual;
+        this.qtRegistroPorPagina = qtRegistroPorPagina;
     }
 
-    public static int getQtRegistrosPorPagina() {
-        return QT_REGISTROS_POR_PAGINA;
+    public long getQtRegistroPorPagina() {
+        return qtRegistroPorPagina;
+    }
+
+    public void setQtRegistroPorPagina(long qtRegistroPorPagina) {
+        this.qtRegistroPorPagina = qtRegistroPorPagina;
     }
 
     public long getQtPaginas() {

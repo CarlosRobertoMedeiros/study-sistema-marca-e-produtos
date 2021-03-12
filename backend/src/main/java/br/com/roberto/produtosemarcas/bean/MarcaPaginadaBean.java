@@ -7,12 +7,12 @@ import java.util.List;
 
 public class MarcaPaginadaBean {
 
-    private Paginador paginador;
     private List<Marca> marcas;
+    private Paginador paginador;
 
-    public MarcaPaginadaBean(Paginador paginador, List<Marca> marcas) {
-        this.paginador = paginador;
+    public MarcaPaginadaBean(List<Marca> marcas, Paginador paginador) {
         this.marcas = marcas;
+        this.paginador = paginador;
     }
 
     public Paginador getPaginador() {

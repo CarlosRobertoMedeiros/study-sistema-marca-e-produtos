@@ -42,7 +42,7 @@
                         mc.prepareExibirPaginacao(servicos,nuPagina)
                         if(servicos != undefined && servicos != null){
                             if(servicos.marcas.length != undefined){
-                                mc.totalPagina = servicos.marcas.length
+                                mc.totalPagina = servicos.paginador.qtPaginas;
                             }
                         }
                     },function(error){
@@ -73,7 +73,7 @@
         };
         
         mc.buscarUltimaPaginaServico = function(){
-            let nuPagina = mc.servicos.qtPagina;
+            let nuPagina = mc.totalPagina;
             mc.buscarPaginaServico(nuPagina, mc.icTipoPessoa, mc.searchServico);
             console.log("Chamei a proxima Pagina");
 

@@ -33,6 +33,13 @@
 
         <h2>{{sistema}}</h2>
         <h5>Filtros</h5>
+        <form class="form-inline">
+            <div class="form-group">
+                <label>Procurar: </label>
+                <input type="text" ng-model="procurar" class="form-control" placeholder="Procurar...">
+            </div>
+        </form>
+        <hr/>
 
 
         <h5>Dados</h5>
@@ -47,7 +54,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="marca in mc.servicos.marcas">
+                <tr ng-repeat="marca in mc.servicos.marcas | filter: procurar">
                     <th scope="row">{{marca.id}}</th>
                     <td>{{marca.nome}}</td>
                     <td>{{marca.descricao}} </td>
@@ -62,6 +69,48 @@
         <button type="button"  class="btn btn-primary"><i class="fa fa-plus"></i></button>
 
         <!--paginação -->
+        <nav aria-label="Paginação" class="text-center" ng-show="mc.icPaginacao">
+            <ul class="pagination">
+                
+                
+                <li class="page-item {{(mc.paginaAtual == 1)?'disabled':''}}" ng-show="true">
+                    <a class="page-link" href="#" aria-label="Anterior" ng-click="mc.buscarAnteriorPaginaServico()">
+                        <span aria-hidden="true">Anterior</span>
+                    </a>
+                </li>
+
+                <li class="page-item {{(mc.paginaAtual == 1)?'disabled':''}}">
+                    <a class="page-link" href="#" aria-label="Primeira" ng-click="mc.buscarPrimeiraPaginaServico()">
+                        <span aria-hidden="true">Primeira</span>
+                    </a>
+                </li>
+
+                
+                <li ng-repeat="nuPagina in mc.nuPaginaExibicao" class="page-item {{(nuPagina == mc.paginaAtual)?'active':''}}">
+                    <a class="page-link" href="#" ng-click="mc.buscarPaginaServico(nuPagina)" 
+                    ng-show="(nuPagina > (mc.paginaAtual - 5)) && (nuPagina < (mc.paginaAtual + 5))">{{nuPagina}}</a>
+                </li>
+
+                
+                <li class="page-item {{(mc.paginaAtual == mc.totalPagina)?'disabled':''}}" ng-show="true">
+                    <a class="page-link" href="#" aria-label="Próxima" ng-click="mc.buscarProximaPaginaServico()">
+                        <span aria-hidden="true">Próxima</span>
+                    </a>
+                </li>
+                
+               
+                <li class="page-item {{(mc.paginaAtual ==  mc.totalPagina)?'disabled':''}}">
+                    <a class="page-link" href="#" aria-label="Última" ng-click="mc.buscarUltimaPaginaServico()">
+                        <span aria-hidden="true">Última</span>
+                    </a>
+                </li>
+            </ul>
+          </nav>
+
+
+
+        <!--paginação 2-->
+        <!--
         <nav aria-label="Paginação" class="text-center" ng-show="mc.icPaginacao">
             <ul class="pagination">
                 <li class="{{(mc.paginaAtual == 1)?'disabled':''}}">
@@ -93,41 +142,10 @@
                 
             </ul>
         </nav>
+        -->
 
         
-        <!--
-        <nav aria-label="Paginação" class="text-center" ng-show="mc.icPaginacao">
-            <ul class="pagination">
-                <li class="{{(mc.paginaAtual == 1)?'disabled':''}}">
-                    <a href="#" aria-label="Primeira" ng-click="mc.buscarPrimeiraPagina()">
-                        <span aria-hidden="true"><i class="fa fa-angle-double-left"></i> Primeira</span>
-                    </a>
-                </li>
-                <li class="{{(mc.paginaAtual == 1)?'disabled':''}}" ng-show="false">
-                    <a href="#" aria-label="Anterior" ng-click="mc.buscarPaginaAnterior()">
-                        <span aria-hidden="true"><i class="fa fa-angle-left"></i> Anterior</span>
-                    </a>
-                </li>
-                                
-                <li ng-repeat="nuPagina in mc.nuPaginaExibicao" class="{{(nuPagina == mc.paginaAtual)?'active':''}}">
-                    <a href="#" ng-click="mc.buscarPaginaServico(nuPagina)" ng-show="(nuPagina > (mc.paginaAtual - 5)) && (nuPagina < (mc.paginaAtual + 5))">{{nuPagina}}</a>
-                </li>
-                
-                <li class="{{(mc.paginaAtual == mc.totalPages)?'disabled':''}}" ng-show="false">
-                    <a href="#" aria-label="Próxima" ng-click="mc.buscarProximaPagina()">
-                        <span aria-hidden="true"><i class="fa fa-angle-right"></i>Próxima</span>
-                    </a>
-                </li>
-
-                <li class="{{(mc.paginaAtual == mc.totalPages)?'disabled':''}}">
-                    <a href="#" aria-label="Última" ng-click="mc.buscarUltimaPagina()">
-                        <span aria-hidden="true"><i class="fa fa-angle-double-right"></i>Última</span>
-                    </a>
-                </li>
-
-            </ul>
-        </nav>
-        -->
+        
         
 
     </div>

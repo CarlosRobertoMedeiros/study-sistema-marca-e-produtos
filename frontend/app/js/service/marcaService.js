@@ -12,7 +12,7 @@
         mc.listarMarcas = function(inicio,tamanho){
             //const url = baseUrl+baseVersao+'marcas?inicio='+(inicio-1)+'&tamanho='+(tamanho);
             debugger;
-            const url = baseUrl+baseVersao+'marcas?inicio='+1+'&tamanho='+10;
+            const url = baseUrl+baseVersao+'marcas?inicio='+(inicio-1)*5+'&tamanho='+5;
             console.log(url);
 
             return $http.get(url);

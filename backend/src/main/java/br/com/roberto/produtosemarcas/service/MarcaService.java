@@ -38,13 +38,13 @@ public class MarcaService {
     public MarcaPaginadaBean recuperarMarcas() {
         Paginador paginador = paginadorDAO.recuperaInformacoesMarcas();
         List<Marca> marcas = marcaDAO.recuperarMarcas();
-        return new MarcaPaginadaBean(paginador,marcas);
+        return new MarcaPaginadaBean(marcas,paginador);
     }
 
     public MarcaPaginadaBean recuperarMarcas(PaginacaoFilterBean paginacaoFilterBean) {
         Paginador paginador = paginadorDAO.recuperaInformacoesMarcas();
-        List<Marca> marcas = marcaDAO.recuperarMarcas();
-        return new MarcaPaginadaBean(paginador,marcas);
+        List<Marca> marcas = marcaDAO.recuperarMarcas(paginacaoFilterBean);
+        return new MarcaPaginadaBean(marcas,paginador);
     }
 
 
@@ -54,7 +54,7 @@ public class MarcaService {
     }
 
     public MarcaPaginadaBean recuperarMarcasPorNome(String nome) {
-        return new MarcaPaginadaBean(null,marcaDAO.recuperarMarcasPorNome(nome));
+        return new MarcaPaginadaBean(marcaDAO.recuperarMarcasPorNome(nome),null);
     }
 
     public void atualizarMarca(Marca marca, long marcaId) {

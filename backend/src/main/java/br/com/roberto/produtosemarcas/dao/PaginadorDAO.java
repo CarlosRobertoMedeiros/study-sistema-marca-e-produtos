@@ -7,6 +7,7 @@ import javax.persistence.Query;
 
 public class PaginadorDAO {
 
+    private static long REGISTROS_POR_PAGINA = 5;
     public Paginador recuperaInformacoesMarcas( ) {
         EntityManager em = JPAUtil.getEntityManager();
 
@@ -14,10 +15,10 @@ public class PaginadorDAO {
         Query query = em.createQuery(jpqlQtdeMarcas);
 
         long qtdeMarcas = (long) query.getSingleResult();
-        long qtdePaginas = Math.round((qtdeMarcas / 5));
+        long qtdePaginas = Math.round((qtdeMarcas / 5))+1;
 
         //TODO Ajustar a Página atual
-        return new Paginador(qtdePaginas,qtdeMarcas,1);
+        return new Paginador(qtdePaginas,qtdeMarcas,1, REGISTROS_POR_PAGINA);
     }
 
 }
