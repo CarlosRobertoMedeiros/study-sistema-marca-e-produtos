@@ -1,8 +1,8 @@
-<div class="modal fade" id="editarMarcaModal"  tabindex="-1" role="dialog" aria-labelledby="editarMarcaModalLabel" aria-hidden="true">
+<div class="modal fade" id="incluirMarcaModal"  tabindex="-1" role="dialog" aria-labelledby="incluirMarcaModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="editarMarcaModalLabelTitulo">Editar Marca</h5>
+          <h5 class="modal-title" id="incluirMarcaModalLabelTitulo">Incluir Marca</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -11,22 +11,23 @@
           <form>
             <div class="form-group">
               <label for="recipient-name" class="col-form-label">Id:</label>
-              <input type="text" class="form-control" id="editarMarcaId" readonly value={{mc.marca.id}} >
+              <input type="text" class="form-control" id="incluirMarcaId" readonly >
             </div>
             <div class="form-group">
                 <label for="recipient-name" class="col-form-label">Nome:</label>
-                <input type="text" class="form-control" id="editarMarcaNome" value={{mc.marca.nome}}>
+                <input type="text" class="form-control" id="incluirMarcaNome" autofocus>
               </div>
             <div class="form-group">
               <label for="message-text" class="col-form-label">Descrição:</label>
-              <textarea class="form-control" id="editarMarcaDescricao">{{mc.marca.descricao}}</textarea>
+              <textarea class="form-control" id="incluirMarcaDescricao" ></textarea>
             </div>
           </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary">Alterar</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Incluir</button>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
         </div>
       </div>
     </div>
 </div>
+  

@@ -1,6 +1,9 @@
 (function(){
     'use strict';
-    angular.module('app').service('MarcaService',['$http',MarcaService]);
+    
+    angular
+        .module('app')
+        .service('MarcaService',['$http',MarcaService]);
 
     function MarcaService($http){
         const mc = this; 
@@ -16,7 +19,21 @@
 
             return $http.get(url);
         }
-    
-    }
 
+        mc.excluirMarca = function (marca){
+            debugger;
+            const authToken = sessionStorage.getItem('authToken');
+            const url = baseUrl+baseVersao+'marcas/'+marca.id;
+            return $http({
+                method: "DELETE",
+                headers: new HttpHeaders({
+                    'Content-type': 'application/json;charset=utf-8',
+                    Authorization: 'Bearer '+ authToken
+                }),
+                url: url,
+                data: marca,
+                
+            });
+        }
+    }
 })();

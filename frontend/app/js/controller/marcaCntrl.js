@@ -57,49 +57,65 @@
         mc.buscarPrimeiraPaginaServico = function(){
             let nuPagina = 1;
 			mc.buscarPaginaServico(nuPagina, mc.icTipoPessoa, mc.searchServico);
-            console.log("Chamei o primeiro");
         };
 
         mc.buscarAnteriorPaginaServico = function(){
             let nuPagina = mc.paginaAtual -1;
             mc.buscarPaginaServico(nuPagina, mc.icTipoPessoa, mc.searchServico);
-            console.log("Chamei o anterior");
-
         };
         
         mc.buscarProximaPaginaServico = function(){
             let nuPagina = mc.paginaAtual +1;
             mc.buscarPaginaServico(nuPagina, mc.icTipoPessoa, mc.searchServico);
-            console.log("Chamei a proxima Pagina");
-
         };
         
         mc.buscarUltimaPaginaServico = function(){
             let nuPagina = mc.totalPagina;
             mc.buscarPaginaServico(nuPagina, mc.icTipoPessoa, mc.searchServico);
-            console.log("Chamei a proxima Pagina");
-
         };
 
         mc.visualizarMarca = function(marca){
             mc.marca = {};
             mc.marca = marca;
             $('#visualizarMarcaModal').modal('show');
-
         };
 
-        mc.editarMarca = function(marca){
+        mc.alterarMarca = function(marca){
             mc.marca = {};
             mc.marca = marca;
-            $('#editarMarcaModal').modal('show');
+            $('#alterarMarcaModal').modal('show');
+            $('#alterarMarcaModal').on('shown.bs.modal', function() {
+                $(this).find('[autofocus]').focus();
+              });
         };
 
         mc.excluirMarca = function(marca){  
             mc.marca = {};
             mc.marca = marca;
-            $('#one').modal('show');
+            $('#excluirMarcaModal').modal('show');
 
         };
+
+        mc.excluirMarca2 = function(){
+            debugger;
+            marcaService.excluirMarca(mc.marca).then(function(response){
+                mc.marcas = [];
+                mc.marcas = response.data;
+                console.log(response.data);
+            }), function(error){
+                debugger;
+                if (error.data){
+                    console.log(error);
+                }
+            }
+        }
+
+        mc.incluirMarca = function(){
+            $('#incluirMarcaModal').modal('show');
+            $('#incluirMarcaModal').on('shown.bs.modal', function() {
+                $(this).find('[autofocus]').focus();
+              });
+        }
 
         mc.init = function(){
             this.iniciarObj();

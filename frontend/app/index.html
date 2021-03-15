@@ -62,13 +62,13 @@
                     <td>{{marca.descricao}} </td>
                     <td> 
                         <button type="button" class="btn btn-primary" ng-click="mc.visualizarMarca(marca)"><i class="far fa-eye"></i></button>
-                        <button type="button" class="btn btn-success" ng-click="mc.editarMarca(marca)"><i class="far fa-edit"></i></button>
+                        <button type="button" class="btn btn-success" ng-click="mc.alterarMarca(marca)"><i class="far fa-edit"></i></button>
                         <button type="button" class="btn btn-danger"  ng-click="mc.excluirMarca(marca)"><i class="fa fa-trash"></i></button>
                     </td>
                 </tr>
             </tbody>
         </table>
-        <button type="button"  class="btn btn-primary"><i class="fa fa-plus"></i></button>
+        <button type="button"  class="btn btn-primary" ng-click="mc.incluirMarca()"><i class="fa fa-plus"></i></button>
 
         <!--paginação -->
         <nav aria-label="Paginação" class="text-center" ng-show="mc.icPaginacao">
@@ -110,8 +110,9 @@
           </nav>
 
           <div ng-include="'partials/visualizar.marca.html'"></div>
-          <div ng-include="'partials/editar.marca.html'"></div>
+          <div ng-include="'partials/alterar.marca.html'"></div>
           <div ng-include="'partials/excluir.marca.html'"></div>      
+          <div ng-include="'partials/incluir.marca.html'"></div>      
           
 
     </div>
