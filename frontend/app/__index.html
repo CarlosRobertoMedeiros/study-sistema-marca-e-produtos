@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-br" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Estilos -->
+    <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="bower_components/components-font-awesome/css/all.min.css">
+
+    
+    <!-- Libs-->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="js/app.js"></script>
+        
+    <!-- Controller -->
+    <script src="js/controller/marcaCntrl.js"></script>
+
+    <!-- Service -->
+    <script src="js/service/marcaService.js"></script>
+    
+    <title>{{mc.titulo}}</title>
+
+</head>
+<!-- Implementar no Futuro o redirecionamento para outra pagina-->
+
+<body ng-controller="MarcaCntrl as mc" ng-init="mc.init()">
+
+    <!-- Tabela de Informações-->
+    <div class="container"> 
+
+        <h2>{{sistema}}</h2>
+        <h5>Filtros</h5>
+        <form class="form-inline">
+            <div class="form-group">
+                <label>Procurar: </label>
+                <input type="text" ng-model="procurar" class="form-control" placeholder="Procurar...">
+            </div>
+        </form>
+        <hr/>
+
+
+        <h5>Dados</h5>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">descricao</th>
+                    <th scope="col">Ações</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="marca in mc.servicos.marcas | filter: procurar">
+                    <th scope="row">{{marca.id}}</th>
+                    <td>{{marca.nome}}</td>
+                    <td>{{marca.descricao}} </td>
+                    <td> 
+                        <button type="button" class="btn btn-primary" ng-click="mc.visualizarMarca(marca)"><i class="far fa-eye"></i></button>
+                        <button type="button" class="btn btn-success" ng-click="mc.alterarMarca(marca)"><i class="far fa-edit"></i></button>
+                        <button type="button" class="btn btn-danger"  ng-click="mc.excluirMarca(marca)"><i class="fa fa-trash"></i></button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <button type="button"  class="btn btn-primary" ng-click="mc.incluirMarca()"><i class="fa fa-plus"></i></button>
+
+        <!--paginação -->
+        <nav aria-label="Paginação" class="text-center" ng-show="mc.icPaginacao">
+            <ul class="pagination">
+                
+                
+                <li class="page-item {{(mc.paginaAtual == 1)?'disabled':''}}" ng-show="true">
+                    <a class="page-link" href="#" aria-label="Anterior" ng-click="mc.buscarAnteriorPaginaServico()">
+                        <span aria-hidden="true">Anterior</span>
+                    </a>
+                </li>
+
+                <li class="page-item {{(mc.paginaAtual == 1)?'disabled':''}}">
+                    <a class="page-link" href="#" aria-label="Primeira" ng-click="mc.buscarPrimeiraPaginaServico()">
+                        <span aria-hidden="true">Primeira</span>
+                    </a>
+                </li>
+
+                
+                <li ng-repeat="nuPagina in mc.nuPaginaExibicao" class="page-item {{(nuPagina == mc.paginaAtual)?'active':''}}">
+                    <a class="page-link" href="#" ng-click="mc.buscarPaginaServico(nuPagina)" 
+                    ng-show="(nuPagina > (mc.paginaAtual - 5)) && (nuPagina < (mc.paginaAtual + 5))">{{nuPagina}}</a>
+                </li>
+
+                
+                <li class="page-item {{(mc.paginaAtual == mc.totalPagina)?'disabled':''}}" ng-show="true">
+                    <a class="page-link" href="#" aria-label="Próxima" ng-click="mc.buscarProximaPaginaServico()">
+                        <span aria-hidden="true">Próxima</span>
+                    </a>
+                </li>
+                
+               
+                <li class="page-item {{(mc.paginaAtual ==  mc.totalPagina)?'disabled':''}}">
+                    <a class="page-link" href="#" aria-label="Última" ng-click="mc.buscarUltimaPaginaServico()">
+                        <span aria-hidden="true">Última</span>
+                    </a>
+                </li>
+            </ul>
+          </nav>
+
+          <div ng-include="'partials/visualizar.marca.html'"></div>
+          <div ng-include="'partials/alterar.marca.html'"></div>
+          <div ng-include="'partials/excluir.marca.html'"></div>      
+          <div ng-include="'partials/incluir.marca.html'"></div>      
+          
+
+    </div>
+    
+        
+
+</body>
+</html>
