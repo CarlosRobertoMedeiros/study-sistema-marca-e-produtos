@@ -17,6 +17,9 @@
   "dependencies": {
     "angular": "angularjs#^1.8.2",
     "bootstrap": "^4.6.0",
-    "components-font-awesome": "^5.15.1"
+    "components-font-awesome": "^5.15.1",
+    "angular-messages": "^1.8.2",
+    "angular-ui-router": "^1.0.29",
+    "angularLocalStorage": "ngStorage#^0.3.2"
   }
 }
