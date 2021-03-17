@@ -20,6 +20,8 @@
     "components-font-awesome": "^5.15.1",
     "angular-messages": "^1.8.2",
     "angular-ui-router": "^1.0.29",
-    "angularLocalStorage": "ngStorage#^0.3.2"
+    "angularLocalStorage": "ngStorage#^0.3.2",
+    "jquery": "^3.6.0",
+    "popper.js": "^2.9.1"
   }
 }
