@@ -7,16 +7,24 @@
         <title>S.P.T - Sistema Principal de Teste</title>
 
         <!-- Folha de Estilo CSS -->
+        <!-- CSS Libs -->
         <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="bower_components/components-font-awesome/css/all.min.css">
+        <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap-grid.min.css">
+        
+        <!-- CSS Programa -->
+        <link rel="stylesheet" type="text/css" href="css/base.css">
+        <link rel="stylesheet" type="text/css" href="css/layout.css">
+        <link rel="stylesheet" type="text/css" href="css/componente.css">
+        
 
         <!-- Scripts -->
-        <!-- Libs -->
+        <!-- Script Libs -->
         <script src="bower_components/jquery/dist/jquery.min.js"></script>
         <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
         <script src="bower_components/angular/angular.min.js"></script>
 
-        <!-- Principal -->
+        <!-- Script Programa -->
         <script src="js/app.js"></script>
 
         <!-- Controllers -->
@@ -34,11 +42,21 @@
     <body ng-controller="ConfiguracaoCntrl as cc">
 
         <!-- Cabeçalho -->
-        <header ng-include="'template/header.html'">
+        <header ng-include="'template/header.html'"></header>
 
+        <!-- Menu Esquerdo -->
+        <div ng-include="'template/menu-esquerdo.html'"></div>
+        
+        
         <!-- Área Principal -->
+        
+
 
         <!--Rodapé -->
+        <!--
+        <footer ng-include="'template/footer.html'"></footer>
+        -->
+        
 
     </body>
 </html>

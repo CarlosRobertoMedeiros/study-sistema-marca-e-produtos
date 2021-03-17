@@ -1,0 +1,13 @@
+.layout-cabecalho {
+	height: 70px;
+	line-height: 70px;
+	border-bottom: 1px solid #7952b3;
+
+	background-color: #7952b3;
+}
+
+.layout-menu-lado-esquerdo{
+    height: 20px;
+    width: 300px;
+    float:left;
+}

@@ -1,0 +1,19 @@
+html{
+	/*Fixei em 10 px para facilitar as contas pra frente */
+	font-size: 62.5%; /*10 / 16 * 100 = 62.5% ou 10px*/
+}
+
+body{
+	/*Organização primeiro são as propriedades de posicionamento*/
+
+	/*Organização segundo são as propriedades de display e BoxModel*/
+	margin: 0px;
+
+	/*Organização terceiro por cores*/
+
+	/*Organização quarto por texto*/
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 1.4rem;
+
+	/*Organização quinto outros*/
+}
