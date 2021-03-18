@@ -1,0 +1,82 @@
+/************************************/
+/*        Componentes               */
+/************************************/
+
+/************************************/
+/*     Componente Menu Esquerdo     */
+/************************************/
+ul{
+  list-style: none;
+}
+
+a{
+	text-decoration: none;
+	color: black;
+}
+
+img{
+	width: 40px;
+}
+
+input[type="checkbox"]
+{
+	display: none;
+}
+
+nav{
+	background-color: #7952b3;
+	width: 200px;
+	height: 700px;
+	left: -200px;
+	position: absolute;
+	transition: all .5s;
+}
+
+input[type="checkbox"]:checked ~ nav
+{
+	transform: translateX(200px);
+}
+
+ul{
+	top:60px;
+	position: absolute;
+	width: 100%;
+}
+
+a{
+	display: block;
+	padding: 20px 5px;
+	color: white;
+}
+
+a:hover{
+	background-color: rgba(176,224,230);
+	color: white;	
+}
+
+label{
+	padding: 15px;
+	position: absolute;
+	z-index: 1;/* Posiciona na frente */
+	
+}
+
+/************************************/
+/* Fim do Componente Menu Esquerdo */
+/************************************/
+
+
+/************************************/
+/*    Componente de Rodapé          */
+/************************************/
+footer{
+    bottom: 0;
+    background-color: #7952b3;
+    position: absolute;
+    width: 100%;
+}
+
+
+/************************************/
+/*  Fim do Componente de Rodapé     */
+/************************************/
